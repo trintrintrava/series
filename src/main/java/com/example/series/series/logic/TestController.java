@@ -22,13 +22,28 @@ class TestController {
 
         ActorService actorService = new ActorService();
         List<Actor> allActors = actorService.getAllActors();
-        return allActors.toString();
 
+        String result = getResultString(allActors);
+
+        String result2 = Arrays.toString(allActors.toArray());
+
+        return result2;
 
 //        LOG.info("Got GET request");
 //        return "TEST HELLO";
+    }
 
+    private String getResultString(List<Actor> allActors) {
 
+        final StringBuilder sb = new StringBuilder("ActorList[");
 
+        for (Actor item : allActors){
+            sb.append(item.toString());
+            sb.append(", ");
+        }
+
+        sb.append("]");
+
+        return sb.toString();
     }
 }
