@@ -1,6 +1,14 @@
 package com.example.series.series.domain;
 
-public class Actor extends domain.ActorFilmParent {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Actor {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String secondName;

@@ -2,8 +2,10 @@ package com.example.series.series.logic;
 
 import com.example.series.series.domain.Actor;
 import com.example.series.series.logic.service.ActorService;
+import com.example.series.series.logic.service.NewActorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +18,18 @@ import java.util.List;
 class TestController {
 
     final Logger LOG = LoggerFactory.getLogger(TestController.class);
+
+    @Autowired
+    private NewActorService service;
+
+    @GetMapping("t-point")
+    public String getAllActors() {
+
+        List<Actor> allActors = service.getAllActors();
+        String result3 = Arrays.toString(allActors.toArray());
+        return result3;
+
+    }
 
     @GetMapping("test-point")
     public String getValue() {
