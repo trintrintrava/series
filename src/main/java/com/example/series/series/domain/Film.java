@@ -6,12 +6,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Actor {
+public class Film {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String secondName;
+    private String director;
 
     public Long getId() {
         return id;
@@ -29,20 +29,20 @@ public class Actor {
         this.name = name;
     }
 
-    public String getSecondName() {
-        return secondName;
+    public String getDirector() {
+        return director;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
+    public void setDirector(String director) {
+        this.director = director;
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Actor{");
+        final StringBuilder sb = new StringBuilder("Film{");
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
-        sb.append(", secondName='").append(secondName).append('\'');
+        sb.append(", director='").append(director).append('\'');
         sb.append('}');
         return sb.toString();
     }
