@@ -23,6 +23,7 @@ class TestController {
 
     @Autowired
     private NewActorService aservice;
+    @Autowired
     private NewFilmService fservice;
 
     @GetMapping("t-point")
