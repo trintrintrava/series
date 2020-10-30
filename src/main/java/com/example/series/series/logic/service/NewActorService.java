@@ -20,4 +20,22 @@ public class NewActorService {
 
     }
 
+    public List<Actor> getAllActorsByName(String name) {
+
+        List<Actor> actorList = actorRepository.findByName(name);
+        return actorList;
+    }
+
+    public List<Actor> getAllActorsByNameAndSecondName(String name, String secName) {
+
+        List<Actor> actorList = actorRepository.findByNameAndSecondName(name, secName);
+        return actorList;
+    }
+
+    public List<Actor> getAllActorsByNameAndSecondNameNative(String name, String secName) {
+
+        List<Actor> actorList = actorRepository.findActorByNameAndSecondName(name, secName);
+        return actorList;
+    }
+
 }

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
@@ -37,6 +38,33 @@ class TestController {
 
         return result3;
 
+    }
+
+    @GetMapping("get-actor-by-name")
+    public String getActorsByName(@RequestParam("name") String actorName){
+        List<Actor> actorsByName = aservice.getAllActorsByName(actorName);
+        return Arrays.toString(actorsByName.toArray());
+    }
+
+    @GetMapping("get-actor-by-name-and-secondName")
+    public String getActorsByName(@RequestParam("first") String actorName,
+                                  @RequestParam("second") String actorSecondName){
+        List<Actor> actorsByName = aservice.getAllActorsByNameAndSecondName(actorName, actorSecondName);
+        return Arrays.toString(actorsByName.toArray());
+    }
+
+    @GetMapping("get-film-by-name-and-director")
+    public String getFilmsByName(@RequestParam("first") String filmName,
+                                  @RequestParam("second") String director){
+        Film filmByNameAndDirector = fservice.getFilm(director, filmName);
+        return filmByNameAndDirector.toString();
+    }
+
+    @GetMapping("get-actor-by-name-and-secondName-Native")
+    public String getActorsByNameNative(@RequestParam("first") String actorName,
+                                  @RequestParam("second") String actorSecondName){
+        List<Actor> actorsByNameAndSecondName = aservice.getAllActorsByNameAndSecondNameNative(actorName, actorSecondName);
+        return Arrays.toString(actorsByNameAndSecondName.toArray());
     }
 
     @GetMapping("test-point")

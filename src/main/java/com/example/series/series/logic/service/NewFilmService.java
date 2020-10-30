@@ -22,4 +22,11 @@ public class NewFilmService {
 
     }
 
+    public Film getFilm(String dir, String name) {
+
+        Film film = filmRepository.findFilmByDirectorAndName(dir, name);
+        return film;
+
+    }
+
 }
