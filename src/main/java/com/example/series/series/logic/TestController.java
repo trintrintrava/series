@@ -5,13 +5,13 @@ import com.example.series.series.domain.Film;
 import com.example.series.series.logic.service.ActorService;
 import com.example.series.series.logic.service.NewActorService;
 import com.example.series.series.logic.service.NewFilmService;
+import com.example.series.series.repo.ActorRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -65,6 +65,27 @@ class TestController {
                                   @RequestParam("second") String actorSecondName){
         List<Actor> actorsByNameAndSecondName = aservice.getAllActorsByNameAndSecondNameNative(actorName, actorSecondName);
         return Arrays.toString(actorsByNameAndSecondName.toArray());
+    }
+
+    @PostMapping("create-new")
+    public ResponseEntity<Actor>(@RequestBody Actor actor){
+        try {
+            Actor _actor = aservice
+                    .save(new Actor(_actor.getName(), _actor.getSecondName()));
+            return new ResponseEntity<>(_actor, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<HttpStatus> deleteActor(@PathVariable("id") long id) {
+        try {
+            aservice.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("test-point")
