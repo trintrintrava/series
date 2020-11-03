@@ -26,6 +26,8 @@ class TestController {
     private NewActorService aservice;
     @Autowired
     private NewFilmService fservice;
+    @Autowired
+    private ActorRepository actorRepository;
 
     @GetMapping("t-point")
     public String getAllActors() {
@@ -68,11 +70,10 @@ class TestController {
     }
 
     @PostMapping("create-new")
-    public ResponseEntity<Actor>(@RequestBody Actor actor){
+    public ResponseEntity<Actor> addActor(@RequestBody Actor actor){
         try {
-            Actor _actor = aservice
-                    .save(new Actor(_actor.getName(), _actor.getSecondName()));
-            return new ResponseEntity<>(_actor, HttpStatus.CREATED);
+            Actor aactor = actorRepository.save(new Actor(aactor.getName(), aactor.getSecondName()));
+            return new ResponseEntity<>(aactor, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -81,7 +82,7 @@ class TestController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<HttpStatus> deleteActor(@PathVariable("id") long id) {
         try {
-            aservice.deleteById(id);
+            actorRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
