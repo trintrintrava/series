@@ -71,6 +71,7 @@ class TestController {
 
     @PostMapping("create-new")
     public ResponseEntity<Actor> addActor(@RequestBody Actor actor){
+        LOG.info("Call URL for create Actor: {}", actor);
         try {
             Actor aactor = aservice.saveNewActor(actor);
             return new ResponseEntity<>(aactor, HttpStatus.CREATED);
