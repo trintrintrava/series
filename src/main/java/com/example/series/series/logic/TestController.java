@@ -72,7 +72,7 @@ class TestController {
     @PostMapping("create-new")
     public ResponseEntity<Actor> addActor(@RequestBody Actor actor){
         try {
-            Actor aactor = actorRepository.save(new Actor(aactor.getName(), aactor.getSecondName()));
+            Actor aactor = aservice.saveNewActor(actor);
             return new ResponseEntity<>(aactor, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

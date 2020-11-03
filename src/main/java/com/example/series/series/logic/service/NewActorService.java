@@ -20,6 +20,13 @@ public class NewActorService {
 
     }
 
+    public Actor saveNewActor(Actor actor) {
+
+        Actor actorList = actorRepository.save(actor);
+        return actorList;
+
+    }
+
     public List<Actor> getAllActorsByName(String name) {
 
         List<Actor> actorList = actorRepository.findByName(name);
