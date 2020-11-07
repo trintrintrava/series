@@ -26,8 +26,6 @@ class TestController {
     private NewActorService aservice;
     @Autowired
     private NewFilmService fservice;
-    @Autowired
-    private ActorRepository actorRepository;
 
     @GetMapping("t-point")
     public String getAllActors() {
@@ -83,7 +81,7 @@ class TestController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<HttpStatus> deleteActor(@PathVariable("id") long id) {
         try {
-            actorRepository.deleteById(id);
+            aservice.deleteActor(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

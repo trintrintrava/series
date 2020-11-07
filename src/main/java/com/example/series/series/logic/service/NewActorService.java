@@ -27,6 +27,12 @@ public class NewActorService {
 
     }
 
+    public void deleteActor(long id) {
+
+        actorRepository.deleteById(id);
+
+    }
+
     public List<Actor> getAllActorsByName(String name) {
 
         List<Actor> actorList = actorRepository.findByName(name);
