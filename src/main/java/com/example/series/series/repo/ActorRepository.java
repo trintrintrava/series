@@ -1,7 +1,6 @@
 package com.example.series.series.repo;
 
 import com.example.series.series.domain.Actor;
-import com.example.series.series.domain.Film;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
