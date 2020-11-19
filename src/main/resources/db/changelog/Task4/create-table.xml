@@ -1,0 +1,62 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+
+        logicalFilePath="db\changelog\Task4\create-table.xml"
+
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+            http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+        ">
+
+        <!-- Create actor table -->
+        <changeSet id="create-actor-table" author="trintrintrava">
+    <!--        id уникален в пределах changeset-->
+
+            <preConditions onFail="MARK_RAN">
+                <not>
+                    <tableExists tableName="actor" schemaName="el_j"/>
+                </not>
+            </preConditions>
+
+            <createTable tableName="actor">
+                <column autoIncrement = "true" name="id" type="BIGINT">
+                    <constraints
+                            primaryKey="true"
+                            primaryKeyName="actor_pk"/>
+                </column>
+                <column name="name" type="VARCHAR(255)">
+                    <constraints nullable="false"/>
+                </column>
+                <column name="second_name" type="VARCHAR(255)">
+                    <constraints nullable="false"/>
+                </column>
+            </createTable>
+        </changeSet>
+
+    <!-- Create film table -->
+    <changeSet id="create-film-table" author="trintrintrava">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="film" schemaName="el_j"/>
+            </not>
+        </preConditions>
+
+        <!--        id уникален в пределах changeset-->
+        <createTable tableName="film">
+            <column autoIncrement = "true" name="id" type="BIGINT">
+                <constraints
+                        primaryKey="true"
+                        primaryKeyName="film_pk"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="director" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
