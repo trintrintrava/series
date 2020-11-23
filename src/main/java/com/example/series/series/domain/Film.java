@@ -12,6 +12,15 @@ public class Film {
     private Long id;
     private String name;
     private String director;
+    private Integer rating;
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
 
     public Long getId() {
         return id;
@@ -43,7 +52,9 @@ public class Film {
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
         sb.append(", director='").append(director).append('\'');
+        sb.append(", rating=").append(rating);
         sb.append('}');
         return sb.toString();
     }
+
 }

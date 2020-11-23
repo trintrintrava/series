@@ -39,6 +39,12 @@ public class NewActorService {
         return actorList;
     }
 
+    public List<Actor> getAllActorsByGender(String gender) {
+
+        List<Actor> actorList = actorRepository.findByGender(gender);
+        return actorList;
+    }
+
     public List<Actor> getAllActorsByNameAndSecondName(String name, String secName) {
 
         List<Actor> actorList = actorRepository.findByNameAndSecondName(name, secName);

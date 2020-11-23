@@ -12,6 +12,7 @@ import java.util.List;
 public interface ActorRepository extends JpaRepository<Actor, Long> {
 
     public List<Actor> findByName(String name);
+    public List<Actor> findByGender(String gender);
     public List<Actor> findByNameAndSecondName(String name, String secondName);
 
     @Query(value = "SELECT * FROM actor a WHERE a.name = :name and a.second_name = :secName", nativeQuery = true)

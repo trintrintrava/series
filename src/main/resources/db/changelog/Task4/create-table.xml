@@ -59,4 +59,52 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="create-actor-to-film-table" author="trintrintrava">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="act_to_film" schemaName="el_j"/>
+            </not>
+        </preConditions>
+
+        <!--        id уникален в пределах changeset-->
+        <createTable tableName="act_to_film">
+            <column autoIncrement = "true" name="id" type="BIGINT">
+                <constraints
+                        primaryKey="true"
+                        primaryKeyName="act_to_film_pk"/>
+            </column>
+            <column name="actor_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="film_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="trintrintrava" id="addColumn-to-Film">
+        <preConditions onFail="MARK_RAN">
+            <not>
+               <or>
+                <columnExists tableName="film" columnName="rating" schemaName="el_j"/>
+                <columnExists tableName="actor" columnName="gender" schemaName="el_j"/>
+               </or>
+            </not>
+        </preConditions>
+
+        <addColumn schemaName= "el_j"
+                   tableName="film" >
+            <column name="rating"
+                    type="BIGINT"/>
+        </addColumn>
+
+        <addColumn schemaName= "el_j"
+                   tableName="actor" >
+            <column name="gender"
+                    type="VARCHAR(255)"/>
+        </addColumn>
+
+    </changeSet>
+
 </databaseChangeLog>

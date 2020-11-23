@@ -37,13 +37,18 @@ class TestController {
         result3 += Arrays.toString(allFilms.toArray());
 
         return result3;
-
     }
 
     @GetMapping("get-actor-by-name")
     public String getActorsByName(@RequestParam("name") String actorName){
         List<Actor> actorsByName = aservice.getAllActorsByName(actorName);
         return Arrays.toString(actorsByName.toArray());
+    }
+
+    @GetMapping("get-actor-by-gender")
+    public String getActorsByGender(@RequestParam("gender") String actorGender){
+        List<Actor> actorsByGender = aservice.getAllActorsByGender(actorGender);
+        return Arrays.toString(actorsByGender.toArray());
     }
 
     @GetMapping("get-actor-by-name-and-secondName")

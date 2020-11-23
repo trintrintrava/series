@@ -12,6 +12,15 @@ public class Actor {
     private Long id;
     private String name;
     private String secondName;
+    private String gender;
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
     public Long getId() {
         return id;
@@ -43,6 +52,7 @@ public class Actor {
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
         sb.append(", secondName='").append(secondName).append('\'');
+        sb.append(", gender='").append(gender).append('\'');
         sb.append('}');
         return sb.toString();
     }
