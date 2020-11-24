@@ -5,7 +5,6 @@ import com.example.series.series.domain.Film;
 import com.example.series.series.logic.service.ActorService;
 import com.example.series.series.logic.service.NewActorService;
 import com.example.series.series.logic.service.NewFilmService;
-import com.example.series.series.repo.ActorRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.List;
 
-@RestController
+@RestController //аннотация на класс, отвечающий за точку входа
 @RequestMapping("/end-point/")
 class TestController {
 
@@ -39,33 +38,33 @@ class TestController {
         return result3;
     }
 
-    @GetMapping("get-actor-by-name")
+    @GetMapping("get-actors-by-name")
     public String getActorsByName(@RequestParam("name") String actorName){
         List<Actor> actorsByName = aservice.getAllActorsByName(actorName);
         return Arrays.toString(actorsByName.toArray());
     }
 
-    @GetMapping("get-actor-by-gender")
+    @GetMapping("get-actors-by-gender")
     public String getActorsByGender(@RequestParam("gender") String actorGender){
         List<Actor> actorsByGender = aservice.getAllActorsByGender(actorGender);
         return Arrays.toString(actorsByGender.toArray());
     }
 
-    @GetMapping("get-actor-by-name-and-secondName")
+    @GetMapping("get-actors-by-name-and-secondName")
     public String getActorsByName(@RequestParam("first") String actorName,
                                   @RequestParam("second") String actorSecondName){
         List<Actor> actorsByName = aservice.getAllActorsByNameAndSecondName(actorName, actorSecondName);
         return Arrays.toString(actorsByName.toArray());
     }
 
-    @GetMapping("get-film-by-name-and-director")
+    @GetMapping("get-films-by-name-and-director")
     public String getFilmsByName(@RequestParam("first") String filmName,
                                   @RequestParam("second") String director){
         Film filmByNameAndDirector = fservice.getFilm(director, filmName);
         return filmByNameAndDirector.toString();
     }
 
-    @GetMapping("get-actor-by-name-and-secondName-Native")
+    @GetMapping("get-actors-by-name-and-secondName-Native")
     public String getActorsByNameNative(@RequestParam("first") String actorName,
                                   @RequestParam("second") String actorSecondName){
         List<Actor> actorsByNameAndSecondName = aservice.getAllActorsByNameAndSecondNameNative(actorName, actorSecondName);

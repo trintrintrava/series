@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 @Entity
 public class Actor {
@@ -13,14 +14,7 @@ public class Actor {
     private String name;
     private String secondName;
     private String gender;
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
+    private LocalDate birth;
 
     public Long getId() {
         return id;
@@ -46,6 +40,22 @@ public class Actor {
         this.secondName = secondName;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public LocalDate getBirth() {
+        return birth;
+    }
+
+    public void setBirth(LocalDate birth) {
+        this.birth = birth;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Actor{");
@@ -53,6 +63,7 @@ public class Actor {
         sb.append(", name='").append(name).append('\'');
         sb.append(", secondName='").append(secondName).append('\'');
         sb.append(", gender='").append(gender).append('\'');
+        sb.append(", birth=").append(birth);
         sb.append('}');
         return sb.toString();
     }

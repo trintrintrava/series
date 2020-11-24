@@ -4,15 +4,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 @Entity
-public class Film {
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String director;
-    private Integer rating;
+    private String gender;
+    private LocalDate birth;
 
     public Long getId() {
         return id;
@@ -30,31 +31,30 @@ public class Film {
         this.name = name;
     }
 
-    public String getDirector() {
-        return director;
+    public String getGender() {
+        return gender;
     }
 
-    public void setDirector(String director) {
-        this.director = director;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    public Integer getRating() {
-        return rating;
+    public LocalDate getBirth() {
+        return birth;
     }
 
-    public void setRating(Integer rating) {
-        this.rating = rating;
+    public void setBirth(LocalDate birth) {
+        this.birth = birth;
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Film{");
+        final StringBuilder sb = new StringBuilder("Users{");
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
-        sb.append(", director='").append(director).append('\'');
-        sb.append(", rating=").append(rating);
+        sb.append(", gender='").append(gender).append('\'');
+        sb.append(", birth=").append(birth);
         sb.append('}');
         return sb.toString();
     }
-
 }
