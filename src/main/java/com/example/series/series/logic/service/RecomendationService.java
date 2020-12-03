@@ -31,16 +31,23 @@ public class RecomendationService {
 
         List <Film> recomendations2 = filmRepository.findFilmsByDirector(id);
 
-//        3. Выбрать фильмы, на которых у юзера больше 5 рейтинг и выдать фильмы тех же актеров
+//        -3. Выбрать фильмы, на которых у юзера больше 5 рейтинг и выдать фильмы тех же актеров
 //        4. Выбрать фильмы, на которых другие юзеры поставили рейтинг больше 5
+
+        List<Film> recomendation4 = filmRepository.findFilmsByRatingOfOtherUsers(id);
+
 //        5. Выбрать фильмы, на которых основной рейтинг больше 5
 
         List <Film> recomendations5 = filmRepository.findFilmsByRating(id);
 
 //        6. Выбрать фильмы, с высокими оценками от userов того же гендера
-//        7. Выбрать фильмы, с высокими оценками от userов той же возрастной категории
 
-        return recomendations5;
+        String userGender = usersRepository.findUsersGenderByName(id);
+        List<Film> recomendations6 = filmRepository.findFilmsByRatingOfOtherUsersSameGender(id, userGender);
+
+//        -7. Выбрать фильмы, с высокими оценками от userов той же возрастной категории
+
+        return recomendations6;
     }
 
 //    select *

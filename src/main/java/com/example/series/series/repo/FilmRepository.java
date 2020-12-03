@@ -28,6 +28,10 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
             "and f.id not in (select r.film_id from review r where r.user_id = :id) ORDER BY f.rating DESC", nativeQuery = true)
     List<Film> findFilmsByDirector(@Param("id") Long id);
 
+    @Query(value = "SELECT * FROM el_j.film f WHERE f.id in (select r.film_id from el_j.review as r where r.rating>5 and r.user_id != :id) ORDER BY f.rating DESC", nativeQuery = true)
+    List<Film> findFilmsByRatingOfOtherUsers(@Param("id") Long id);
 
-
+    @Query(value = "SELECT * FROM el_j.film f WHERE f.id in (select r.film_id from el_j.review as r join el_j.users as u on u.id = r.user_id where r.rating>5 and r.user_id != :id and u.gender = :gender) ORDER BY f.rating DESC", nativeQuery = true)
+    List<Film> findFilmsByRatingOfOtherUsersSameGender(@Param("id") Long id,
+                                                       @Param("gender") String userGender);
 }
