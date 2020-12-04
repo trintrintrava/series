@@ -12,9 +12,10 @@ import java.util.List;
 @Repository
 public interface UsersRepository extends JpaRepository<Users, Long> {
 
-    @Query(value = "SELECT u.id FROM users u WHERE u.name = :name", nativeQuery = true)
-    Long findUsersIdByName(@Param("name") String name);
+    @Query(value = "SELECT * FROM users u WHERE u.name = :name", nativeQuery = true)
+    List<Users> findUserByName(@Param("name") String name);
 
     @Query(value = "SELECT u.gender FROM users u WHERE u.id = :id", nativeQuery = true)
-    String findUsersGenderByName(@Param("id") Long id);
+    String findUsersGenderById(@Param("id") Long id);
+
 }
