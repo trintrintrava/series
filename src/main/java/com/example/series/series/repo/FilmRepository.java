@@ -59,7 +59,7 @@ public interface FilmRepository extends JpaRepository<Film, Long> {
             "WHERE f.id in (select r.film_id " +
             "           from el_j.review as r " +
             "           join el_j.users as u on u.id = r.user_id " +
-            "           where r.rating > 5 and r.user_id != :id and (u.birth < :birth2 and u.birth > birth1)) " +
+            "           where r.rating > 5 and r.user_id != :id and (u.birth < :birth2 and u.birth > :birth1)) " +
             "ORDER BY f.rating DESC", nativeQuery = true)
     List<Film> findFilmsByRatingOfOtherUsersSameAgeCategory(@Param("id") Long id, @Param("birth1") LocalDate birth1, @Param("birth2") LocalDate birth2);
 }

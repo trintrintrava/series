@@ -1,6 +1,7 @@
 package com.example.series.series.logic;
 
 import com.example.series.series.domain.Film;
+import com.example.series.series.logic.service.RecomendationNoSQLService;
 import com.example.series.series.logic.service.RecomendationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,9 +23,18 @@ public class AdvicerController {
     @Autowired
     private RecomendationService recomendationService;
 
+    @Autowired
+    private RecomendationNoSQLService recomendationNoSQLService;
+
     @GetMapping("get-films-by-recomendation")
-    public String getActorsByName(@RequestParam("user") String userName){
+    public String getFilmsByRecomendations(@RequestParam("user") String userName){
         List<Film> filmsByRecomendations = recomendationService.getRecomendations(userName);
+        return Arrays.toString(filmsByRecomendations.toArray());
+    }
+
+    @GetMapping("get-films-by-recomendation-no-sql")
+    public String getFilmsByRecomendationsNoSQL(@RequestParam("user") String userName){
+        List<Film> filmsByRecomendations = recomendationNoSQLService.getRecomendations(userName);
         return Arrays.toString(filmsByRecomendations.toArray());
     }
 
