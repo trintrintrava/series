@@ -69,7 +69,6 @@ public class RecomendationNoSQLService {
 
         List<Film> recomendations6 = filmsWithRatingBiggerThan5FromUsersSameGenderUnseen(user, allFilms, allReview, allUsers);
 
-//_________________________________________
 //        7. Выбрать фильмы, с высокими оценками от userов той же возрастной категории
 
         LocalDate birth1 = user.getBirth().minusYears(5);

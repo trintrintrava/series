@@ -196,7 +196,6 @@
     <changeSet  id="fk_review_users" author="trintrintrava" >
         <addForeignKeyConstraint  baseColumnNames="user_id"
                                   baseTableName="review"
-                                  baseTableSchemaName="el_j"
                                   constraintName="fk_review_users"
                                   referencedColumnNames="id"
                                   referencedTableName="users"
@@ -206,7 +205,6 @@
     <changeSet  id="fk_review_film" author="trintrintrava" >
         <addForeignKeyConstraint  baseColumnNames="film_id"
                                   baseTableName="review"
-                                  baseTableSchemaName="el_j"
                                   constraintName="fk_review_film"
                                   referencedColumnNames="id"
                                   referencedTableName="film"
